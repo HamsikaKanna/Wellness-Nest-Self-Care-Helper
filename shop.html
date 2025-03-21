@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop Wellness Products</title>
+    <style>
+        body {
+            background-image: url('https://marketplace.canva.com/EAGBzF6JmJI/1/0/1600w/canva-brown-aesthetic-desktop-wallpaper-sxI5LG9hxlk.jpg');
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #1F4E78;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border: 1px solid #EAEAEA;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #1F4E78;
+        }
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #FFF1CF;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+            color: #2A2A2A;
+        }
+        .product img {
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+        .product button {
+            background-color: #1F4E78;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .product button:hover {
+            background-color: #163E5A;
+        }
+        .buy-page-link {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #1F4E78;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        .buy-page-link:hover {
+            background-color: #163E5A;
+        }
+    </style>
+    <script>
+        function addToCart(productName, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(productName + " has been added to your cart!");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Shop Wellness Products</h1>
+        <div class="product">
+            <img src="https://cdn.thewirecutter.com/wp-content/media/2024/07/yoga-mat-2048px-1633-2x1-1.jpg" alt="Yoga Mat">
+            <p><strong>Yoga Mat</strong></p>
+            <p>Price: ₹999</p>
+            <p>Comfortable and durable yoga mat for your exercises.</p>
+            <button onclick="addToCart('Yoga Mat', 999)">Add to Cart</button>
+        </div>
+        <div class="product"> <img src="https://lloydspharmacy.com/cdn/shop/files/nutri-within-masonry-banner_1070x.jpg?v=1641810616" alt="Vitamin Supplements"> 
+            <p><strong>Vitamin Supplements</strong></p>
+             <p>Price: ₹699</p> 
+             <p>Support your wellness journey with essential vitamins.</p> 
+             <button onclick="addToCart('Vitamin Supplements', 699)">Add to Cart</button>
+             </div> 
+             <div class="product"> <img src="https://i.natgeofe.com/n/08b82317-2dd9-4008-b43a-99d88c46281e/Whoop_4.0_9.17.24.Amazon.jpg" alt="Fitness Bands"> 
+                <p><strong>Fitness Bands</strong></p>
+                 <p>Price: ₹1,299</p> 
+                 <p>Track your workouts and stay fit.</p> 
+                 <button onclick="addToCart('Fitness Bands', 1299)">Add to Cart</button> </div>
+                  <div class="product"> <img src="https://nutritionsource.hsph.harvard.edu/wp-content/uploads/2019/07/tee-2427846_1280.jpg" alt="Herbal Teas">
+                 <p><strong>Herbal Teas</strong></p>
+                  <p>Price: ₹499</p> 
+                  <p>Boost your health with our organic teas.</p> 
+                  <button onclick="addToCart('Herbal Teas', 499)">Add to Cart</button>
+                 </div> 
+                 <div class="product"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdlcJMHJVLMxOdFEHYKBvwMcj570gw0JVKmQ&s" alt="Massage Roller">
+                     <p><strong>Massage Roller</strong></p> <p>Price: ₹799</p> 
+                     <p>Relieve stress and muscle tension.</p> 
+                     <button onclick="addToCart('Massage Roller', 799)">Add to Cart</button>
+                    </div> 
+                </div>
+    </div>
+    <a href="buy.html" class="buy-page-link">View Cart & Buy</a>
+</body>
+</html>

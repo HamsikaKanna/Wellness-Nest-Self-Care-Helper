@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buy Page</title>
+    <style>
+        body {
+            background-image: url('https://marketplace.canva.com/EAGBzF6JmJI/1/0/1600w/canva-brown-aesthetic-desktop-wallpaper-sxI5LG9hxlk.jpg');
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #1F4E78;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border: 1px solid #EAEAEA;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #1F4E78;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin: 10px 0;
+            background: #FFF1CF;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .cart-item span {
+            margin: auto 0;
+        }
+        .cart-item button {
+            background-color: #FF5C5C;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .cart-item button:hover {
+            background-color: #C44444;
+        }
+        .checkout {
+            margin-top: 20px;
+            background-color: #1F4E78;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .checkout:hover {
+            background-color: #163E5A;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 Your Cart</h1>
+        <div id="cart"></div>
+        <button class="checkout" onclick="checkout()">Buy</button>
+    </div>
+
+    <script>
+        function showCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart');
+            cartContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty!</p>';
+            } else {
+                let total = 0;
+                cart.forEach((item, index) => {
+                    total += item.price;
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `
+                        <span>${item.name} - ₹${item.price}</span>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    `;
+                    cartContainer.appendChild(itemDiv);
+                });
+
+                const totalDiv = document.createElement('div');
+                totalDiv.className = 'cart-item';
+                totalDiv.innerHTML = `<strong>Total: ₹${total.toFixed(2)}</strong>`;
+                cartContainer.appendChild(totalDiv);
+            }
+        }
+
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showCart();
+        }
+
+        function checkout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+            } else {
+                let total = cart.reduce((sum, item) => sum + item.price, 0);
+                alert('Thank you for your purchase of ₹' + total.toFixed(2) + '!');
+                localStorage.removeItem('cart');
+                showCart();
+            }
+        }
+
+        showCart();
+    </script>
+</body>
+</html>

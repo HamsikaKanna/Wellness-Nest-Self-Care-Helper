@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>💪 Health Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-image: url('https://marketplace.canva.com/EAGBzF6JmJI/1/0/1600w/canva-brown-aesthetic-desktop-wallpaper-sxI5LG9hxlk.jpg');
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #1F4E78;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border: 1px solid #EAEAEA;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .task {
+            display: block;
+            background: #FFF1CF;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #555;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        canvas {
+            max-width: 100%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="index.html">Go to Home Page</a></p>
+
+    <div class="container">
+        <h1>💪 Health Tracker</h1>
+        <div class="tracker">
+            <label class="task"><input type="checkbox" class="task-checkbox"> Drink Water 💧</label>
+            <label class="task"><input type="checkbox" class="task-checkbox"> Exercise 🏋️‍♀️</label>
+            <label class="task"><input type="checkbox" class="task-checkbox"> Healthy Meals 🥗</label>
+            <label class="task"><input type="checkbox" class="task-checkbox"> Sleep Well 😴</label>
+            <label class="task"><input type="checkbox" class="task-checkbox"> Stretching 🧘‍♀️</label>
+        </div>
+        <canvas id="progressChart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tasks = document.querySelectorAll('.task-checkbox');
+            const ctx = document.getElementById('progressChart').getContext('2d');
+            const savedDate = localStorage.getItem('lastAccessDate');
+            const today = new Date().toDateString();
+
+            if (savedDate !== today) {
+                localStorage.setItem('completionData', JSON.stringify(new Array(7).fill(0)));
+                localStorage.setItem('taskStates', JSON.stringify({}));
+                localStorage.setItem('lastAccessDate', today);
+            }
+
+            const completionData = JSON.parse(localStorage.getItem('completionData')) || new Array(7).fill(0);
+            const todayIndex = new Date().getDay();
+            const savedTaskStates = JSON.parse(localStorage.getItem('taskStates')) || {};
+
+            tasks.forEach((task, index) => {
+                task.checked = savedTaskStates[index] || false;
+            });
+
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                    datasets: [{
+                        label: 'Task Completion (%)',
+                        data: completionData,
+                        backgroundColor: ['#FFA3A3', '#FFB347', '#FFD966', '#99E5A3', '#6FC3F4', '#BFA2FF', '#F4A3C2'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            tasks.forEach((task, index) => {
+                task.addEventListener('change', () => {
+                    saveTaskStates(tasks);
+                    updateCompletionData(completionData, tasks, todayIndex);
+                    chart.data.datasets[0].data = completionData;
+                    chart.update();
+                    localStorage.setItem('completionData', JSON.stringify(completionData));
+                });
+            });
+
+            function saveTaskStates(tasks) {
+                const taskStates = {};
+                tasks.forEach((task, index) => {
+                    taskStates[index] = task.checked;
+                });
+                localStorage.setItem('taskStates', JSON.stringify(taskStates));
+            }
+
+            function updateCompletionData(data, tasks, index) {
+                const completedTasks = Array.from(tasks).filter(task => task.checked).length;
+                const percentage = (completedTasks / tasks.length) * 100;
+                data[index] = percentage;
+            }
+
+            updateCompletionData(completionData, tasks, todayIndex);
+            chart.update();
+        });
+    </script>
+</body>
+</html>
