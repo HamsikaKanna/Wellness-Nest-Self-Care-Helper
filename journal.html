@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <title>Journal Your Thoughts</title>
     <style>
@@ -34,6 +34,31 @@
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
             color: #2A2A2A;
         }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin: 10px 0;
+            border: 1px solid #EAEAEA;
+            border-radius: 0;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            background: #FFF1CF;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        button {
+            background-color: #1F4E78;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #163A56;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +74,11 @@
             <p>🎯 <strong>Goals:</strong> What is one goal you'd like to focus on tomorrow?</p>
             <p>💡 <strong>Reflections:</strong> What did you learn about yourself today?</p>
         </div>
+        <form>
+            <textarea placeholder="Start journaling here..."></textarea>
+            <button type="submit">Save Journal</button>
+        </form>
     </div>
+
 </body>
 </html>
