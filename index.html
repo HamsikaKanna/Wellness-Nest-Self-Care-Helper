@@ -12,7 +12,6 @@
            color: #1F4E78;
        }
 
-       
        section {
            margin-top: 60px;
            padding: 50px 10px;
@@ -43,35 +42,80 @@
            font-weight: bold;
            margin-bottom: 20px;
        }
+
+       #welcome {
+           margin-top: 0;
+           padding: 100px 10px;
+           color: #1F4E78;
+           background: rgba(255, 255, 255, 0.95);
+           box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+       }
+       .changing-message {
+    font-size: 2rem; 
+    font-weight: normal; 
+    margin: 20px 0;
+}
+
     </style>
+    <script>
+        
+        let messages = [
+            "Welcome to Wellness Nest!",
+            "Your journey to wellness starts here.",
+            "Discover tools to build healthy habits."
+        ];
+        let messageIndex = 0;
+
+        function changeMessage() {
+            const messageElement = document.getElementById('changing-message');
+            messageElement.innerHTML = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+        }
+
+        setInterval(changeMessage, 3000); 
+    </script>
 </head>
 <body>
+    <br>
+    <br>
+    
     <h1>🌟 Welcome to Wellness Nest</h1>
     <h2>Your Self-Care Helper</h2>
-    <p>Your personal space for building healthy habits, tracking wellness, and staying focused.</p>
+
+        <img src="https://bravehearts.org.au/wp-content/uploads/2023/05/self-care-happiness-mental-health-e1686194458582.jpg" 
+             alt="Self-care Happiness Mental Health" 
+             style="max-width: 100%; height: auto; margin-bottom: 20px;">
+    
+
+        <p class="changing-message" id="changing-message">
+            Welcome to Wellness Nest!
+        </p>
+
+    <h2>Scroll down to explore!</h2>
+    
 
     <section id="habit-tracker">
         <div class="section-header">🧘 Habit Tracker</div>
         <p>Track your daily habits and visualize your progress over the week.</p>
-        <p><a href="habit_tracker.html" >Go to Habit Tracker</a></p>
+        <p><a href="habit_tracker.html">Go to Habit Tracker</a></p>
     </section>
 
     <section id="health-tracker">
         <div class="section-header">💪 Health Tracker</div>
         <p>Monitor your health goals, from hydration to exercise, and stay motivated.</p>
-        <p><a href="health_tracker.html" >Go to Health Tracker</a></p>
+        <p><a href="health_tracker.html">Go to Health Tracker</a></p>
     </section>
 
     <section id="soothing-music">
         <div class="section-header">🎵 Up for some calming music?</div>
         <p>Relax and unwind with calming music designed to soothe your mind.</p>
-        <p><a href="music.html" >Listen to Soothing Music</a></p>
+        <p><a href="music.html">Listen to Soothing Music</a></p>
     </section>
 
     <section id="mindfulness-exercises">
         <div class="section-header">🌿 Mindfulness Exercises</div>
         <p>Engage in simple mindfulness practices to restore balance and clarity.</p>
-        <p><a href="mindfulness.html" >Explore Mindfulness Exercises</a></p>
+        <p><a href="mindfulness.html">Explore Mindfulness Exercises</a></p>
     </section>
 
     <section id="journal">
@@ -83,26 +127,26 @@
     <section id="yoga">
         <div class="section-header">🧘‍♀️ Yoga for beginners</div>
         <p>Explore gentle yoga poses to relax your mind and strengthen your body.</p>
-        <p><a href="yoga.html" >Go to Yoga Page</a></p>
+        <p><a href="yoga.html">Go to Yoga Page</a></p>
     </section>
 
     <section id="healthy-recipes">
         <div class="section-header">🍽️ Healthy Recipes</div>
         <p>Discover quick and nutritious recipes to fuel your body and mind.</p>
-        <p><a href="recipes.html" >Find simple recipes</a></p>
+        <p><a href="recipes.html">Find simple recipes</a></p>
     </section>
 
     <section id="focus">
         <div class="section-header">💡 How to Stay Focused?</div>
         <p>Discover practical tips to enhance your focus and stay productive throughout the day.</p>
-        <p><a href="focus.html" >Go to Focus Page</a></p>
+        <p><a href="focus.html">Go to Focus Page</a></p>
     </section>
 
     <section id="shop">
         <div class="section-header">🛍️ Shop Wellness Products</div>
         <p>Explore our curated collection of wellness products to support your self-care journey.</p>
         <p><a href="shop.html">Go to Shop</a></p>
-    </section>    
+    </section>
 
     <section id="introduction">
         <div class="section-header">About us</div>
@@ -111,6 +155,11 @@
         <p>Take a deep breath, and let's get started on your path to a healthier, happier you!</p>
         <h2>--- By Hamsika Kanna</h2>
     </section>
-    <br><br><br>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
 </body>
 </html>
